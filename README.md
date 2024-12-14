@@ -8,7 +8,7 @@ Super Smart Contracts are Smart Contracts enhanced by AI. They can interact with
 1. An oracle using OpenAI API to respond to queries
 2. A smart contract which serves as an interface to the oracle: LLMrieZMpbJFwN52WgmBNMxYojrpRVYXdC1RCweEbab
 3. Two example of agents definitions:
-   - A [simple agent](./programs/simple-agent) which queries the orcacle and logs the response
+   - A [simple agent](./programs/simple-agent) which queries the oracle and logs the response
    - An [agent which can dispense tokens](./programs/agent-minter) if convinced by the user knowledge of Solana
 4. A [UI](./app) to interact with the agent minter
 
