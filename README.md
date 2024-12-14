@@ -68,7 +68,7 @@ pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
 }
 ```
 
-3. Define the callback to interact to process the response:
+3. Define the callback to process the response:
 
 ```rust
 pub fn callback_from_agent(ctx: Context<CallbackFromAgent>, response: String) -> Result<()> {
