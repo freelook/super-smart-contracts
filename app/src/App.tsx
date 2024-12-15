@@ -200,7 +200,8 @@ const App: React.FC = () => {
 
             <div style={{textAlign: 'center', width: '40rem'}}>
                 <div className="response-text" style={{marginTop: '10px', textAlign: 'center'}}>
-                    <Response loading={isLoading} message={agentReply?.[0]} onClose={() => setAgentReply(null)}></Response>
+                    <Response loading={isLoading} message={agentReply?.[0]}
+                              onClose={() => setAgentReply(null)}></Response>
                 </div>
 
                 <div className="response-text" style={{marginTop: '10px', textAlign: 'center'}}>
@@ -228,6 +229,10 @@ const App: React.FC = () => {
 
             {transactionSuccess &&
                 <Alert type="success" message={transactionSuccess} onClose={() => setTransactionSuccess(null)}/>}
+
+            <a href="https://github.com/GabrielePicco/super-smart-contracts" target="_blank" rel="noreferrer">
+                <img src={`${process.env.PUBLIC_URL}/github-mark-white.svg`} alt="Github logo" className="github-logo"/>
+            </a>
         </div>
     );
 };

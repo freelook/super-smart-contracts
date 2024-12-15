@@ -146,3 +146,12 @@ h1 {
     margin-left: 5px;
     margin-right: 0;
 }
+
+.github-logo {
+    position: fixed;
+    left: 1em;
+    bottom: 1em;
+    width: 2rem;
+    height: auto;
+    z-index: 10;
+}

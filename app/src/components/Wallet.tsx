@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useMemo} from 'react';
+import React, {FC, ReactNode, useMemo, useState, useEffect} from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import {
     WalletModalProvider,
@@ -25,7 +25,18 @@ export class SimpleProvider implements Provider {
 }
 
 export const Wallet: FC<WalletProps> = ({ app }) => {
-    const endpoint = process.env.RPC_URL || "https://rpc.magicblock.app/devnet";
+    const devnetEndpoint = "https://rpc.magicblock.app/devnet";
+    const mainnetEndpoint = "https://rpc.magicblock.app/mainnet";
+
+    const [endpoint, setEndpoint] = useState(() => {
+        const savedEndpoint = localStorage.getItem('solana-endpoint');
+        return savedEndpoint || devnetEndpoint;
+    });
+
+    useEffect(() => {
+        console.log(`Endpoint changed to: ${endpoint}`);
+        localStorage.setItem('solana-endpoint', endpoint);
+    }, [endpoint]);
 
     const wallets = useMemo(() => [
         new PhantomWalletAdapter(),
@@ -33,7 +44,29 @@ export const Wallet: FC<WalletProps> = ({ app }) => {
     ], []);
 
     return (
-        <ConnectionProvider endpoint={endpoint}>
+        <ConnectionProvider endpoint={endpoint} key={endpoint}>
+            <div className="network-selection" style={{textAlign: 'center', marginBottom: '20px', color: 'gray', marginTop: '20px'}}>
+                <label>
+                    <input
+                        type="radio"
+                        value="mainnet-beta"
+                        checked={endpoint === mainnetEndpoint}
+                        style={{marginRight: '10px'}}
+                        onChange={() => setEndpoint(mainnetEndpoint)}
+                    />
+                    Mainnet
+                </label>
+                <label style={{marginLeft: '20px'}}>
+                    <input
+                        type="radio"
+                        value="devnet"
+                        checked={endpoint === devnetEndpoint}
+                        style={{marginRight: '10px'}}
+                        onChange={() => setEndpoint(devnetEndpoint)}
+                    />
+                    Devnet
+                </label>
+            </div>
             <WalletProvider wallets={wallets} autoConnect>
                 <WalletModalProvider>
                     {app}
