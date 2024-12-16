@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 type SignatureProps = {
+    devnet: boolean;
     message: string | undefined;
     onClose: () => void;
 };
 
-const Signature: React.FC<SignatureProps> = ({ message, onClose }) => {
+const Signature: React.FC<SignatureProps> = ({ devnet, message, onClose }) => {
     const [opacity, setOpacity] = useState(0);
 
     // Handle fade effect
@@ -46,7 +47,7 @@ const Signature: React.FC<SignatureProps> = ({ message, onClose }) => {
             minHeight: '50px',
             boxSizing: 'border-box',
         }}>
-            <a rel="noreferrer" target="_blank" href={`https://explorer.solana.com/tx/${message}/?cluster=devnet`} style={{ color: '#DC1FFF' }}>{message}</a>
+            <a rel="noreferrer" target="_blank" href={`https://explorer.solana.com/tx/${message}/${devnet ? '?cluster=devnet': ''}`} style={{ color: '#DC1FFF' }}>{message}</a>
         </div>
     );
 };

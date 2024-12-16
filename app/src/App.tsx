@@ -205,8 +205,7 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="response-text" style={{marginTop: '10px', textAlign: 'center'}}>
-                    <Signature message={agentReply?.[2]} onClose={() => setAgentReply(null)}></Signature>
-                </div>
+                    <Signature devnet={connection.rpcEndpoint.includes('devnet')} message={agentReply?.[2]} onClose={() => setAgentReply(null)}></Signature>                </div>
             </div>
 
             {isSubmitting && (
